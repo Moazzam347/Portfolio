@@ -1,6 +1,14 @@
 {
   "expo": {
     "name": "wallet-app",
-    "slug": "wallet-app"
+    "slug": "wallet-app",
+    "extra": {
+      "eas": {
+        "projectId": "f761ba19-0139-41ab-b6c5-fb71fd45cd8d"
+      }
+    },
+    "android": {
+      "package": "com.moazzam22.walletapp"
+    }
   }
 }

@@ -18,3 +18,5 @@
 ## 📝 Notes
 
 - [`react-native-reanimated` docs](https://docs.swmansion.com/react-native-reanimated/)
+
+<p> eas build -p android --profile preview (For APK) </p>

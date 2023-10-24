@@ -1,46 +1,16 @@
-import Animated, {
-  useSharedValue,
-  withTiming,
-  useAnimatedStyle,
-  Easing,
-} from "react-native-reanimated";
-import { View, Button } from "react-native";
+import StackNavigator from "./navigation/StackNavigator"
+import { useFonts } from "expo-font";
 
-export default function AnimatedStyleUpdateExample(props) {
-  const randomWidth = useSharedValue(10);
+export default App = () => {
+    const [fontsLoaded, error] = useFonts({
+      "Gilroy-Bold": require("./assets/Gilroy-FREE/Gilroy-ExtraBold.otf"),
+      "Gilroy-Regular": require("./assets/Gilroy-FREE/Gilroy-Light.otf"),
+    });
 
-  const config = {
-    duration: 500,
-    easing: Easing.bezier(0.5, 0.01, 0, 1),
-  };
-
-  const style = useAnimatedStyle(() => {
-    return {
-      width: withTiming(randomWidth.value, config),
-    };
-  });
-
+   if (!fontsLoaded && !error) {
+     return null;
+   }
   return (
-    <View
-      style={{
-        flex: 1,
-        alignItems: "center",
-        justifyContent: "center",
-        flexDirection: "column",
-      }}
-    >
-      <Animated.View
-        style={[
-          { width: 100, height: 80, backgroundColor: "black", margin: 30 },
-          style,
-        ]}
-      />
-      <Button
-        title="toggle"
-        onPress={() => {
-          randomWidth.value = Math.random() * 350;
-        }}
-      />
-    </View>
-  );
+    <StackNavigator/>
+  )
 }
