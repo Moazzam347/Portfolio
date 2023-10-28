@@ -8,6 +8,10 @@ import {
 import React from "react";
 import { FontFamily, Color } from "../GlobalStyles";
 import { useNavigation } from "@react-navigation/native";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from "react-native-responsive-screen";
 
 const CardCategory = (props) => {
   const navigation = useNavigation();
@@ -43,22 +47,21 @@ const styles = StyleSheet.create({
     alignItems: "center",
     gap: 10,
     backgroundColor: "#E4E7F7",
-    width: 100,
-    height: 100,
+    width: wp("25%"),
+    height: wp("25%"),
     borderRadius: 8,
-    // padding: 1,
-    margin: 10,
+    margin: wp("1.5%"),
     elevation: 4,
   },
   textStyle: {
-    fontSize: 17,
+    fontSize: wp("4%"),
     fontFamily: FontFamily.gilroyRegular,
     fontWeight: "600",
     color: Color.dark,
   },
   imageStyle: {
-    width: 40,
-    height: 40,
+    width: wp("10%"),
+    height: wp("10%"),
     resizeMode: "contain",
   },
 });

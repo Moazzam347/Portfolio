@@ -7,6 +7,11 @@ import { Color, FontFamily } from "../GlobalStyles";
 import InputFieldPhone from "../components/InputFieldPhone";
 import { SelectList } from "react-native-dropdown-select-list";
 import ButtonMain from "../components/ButtonMain";
+import CardViewStyleCompnent from "../components/CardViewStyleComponent";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from "react-native-responsive-screen";
 
 const AddBankAccountScreen = () => {
   const navigation = useNavigation();
@@ -45,69 +50,54 @@ const AddBankAccountScreen = () => {
         contentContainerStyle={styles.mainContainer}
       >
         {/* Bill Payment Form */}
-        <View style={styles.topBoxContainer}>
-          {/* Bank Name */}
-          <View style={styles.fieldContainer}>
-            <Text
-              style={[styles.textReason, { fontSize: 18, fontWeight: "600" }]}
-            >
-              Bank Name
-            </Text>
-            {/* <InputFieldPhone iconName="account-balance" placeholder="Banks" /> */}
-            <SelectList
-              placeholder="Select Bank"
-              fontFamily={FontFamily.gilroyRegular}
-              boxStyles={styles.dropBoxStyle}
-              setSelected={(val) => setSelected(val)}
-              data={data}
-              save="value"
-            />
-          </View>
+        <CardViewStyleCompnent>
+          <View>
+            {/* Bank Name */}
+            <View style={styles.fieldContainer}>
+              <Text style={[styles.textReason]}>Bank Name</Text>
+              <SelectList
+                placeholder="Select Bank"
+                fontFamily={FontFamily.gilroyRegular}
+                boxStyles={styles.dropBoxStyle}
+                setSelected={(val) => setSelected(val)}
+                data={data}
+                save="value"
+              />
+            </View>
 
-          {/* Routing Number */}
-          <View style={styles.fieldContainer}>
-            <Text
-              style={[styles.textReason, { fontSize: 18, fontWeight: "600" }]}
-            >
-              Routing Number
-            </Text>
-            <InputFieldPhone
-              iconName="credit-card"
-              placeholder="Digits"
-              keyboardType={"numeric"}
-            />
+            {/* Routing Number */}
+            <View style={styles.fieldContainer}>
+              <Text style={[styles.textReason]}>Routing Number</Text>
+              <InputFieldPhone
+                iconName="credit-card"
+                placeholder="Digits"
+                keyboardType={"numeric"}
+              />
+            </View>
+            {/*  Account Name */}
+            <View style={styles.fieldContainer}>
+              <Text style={[styles.textReason]}>Account Name</Text>
+              <InputFieldPhone iconName="person-outline" placeholder="Name" />
+            </View>
+            {/* Account Number */}
+            <View style={styles.fieldContainer}>
+              <Text style={[styles.textReason]}>Account Number</Text>
+              <InputFieldPhone
+                iconName="credit-card"
+                placeholder="Digits"
+                keyboardType={"numeric"}
+              />
+            </View>
+            {/* Pay Now Button */}
+            <View style={{ alignItems: "center" }}>
+              {/* Button */}
+              <ButtonMain
+                title="Add Account"
+                buttonNavigation={() => navigation.navigate("AddCard")}
+              />
+            </View>
           </View>
-          {/*  Account Name */}
-          <View style={styles.fieldContainer}>
-            <Text
-              style={[styles.textReason, { fontSize: 18, fontWeight: "600" }]}
-            >
-              Account Name
-            </Text>
-            <InputFieldPhone iconName="person-outline" placeholder="Name" />
-          </View>
-          {/* Account Number */}
-          <View style={styles.fieldContainer}>
-            <Text
-              style={[styles.textReason, { fontSize: 18, fontWeight: "600" }]}
-            >
-              Account Number
-            </Text>
-            <InputFieldPhone
-              iconName="credit-card"
-              placeholder="Digits"
-              keyboardType={"numeric"}
-            />
-          </View>
-          {/* Pay Now Button */}
-          <View style={{ alignItems: "center" }}>
-            {/* Button */}
-            <ButtonMain
-              title="Add Account"
-              buttonNavigation={() => navigation.navigate("AddCard")}
-            />
-          </View>
-        </View>
+        </CardViewStyleCompnent>
       </ScrollView>
     </View>
   );
@@ -117,28 +107,20 @@ export default AddBankAccountScreen;
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: Color.white,
     flex: 1,
+    backgroundColor: Color.white,
   },
   mainContainer: {
     paddingBottom: 50,
-  },
-  topBoxContainer: {
-    backgroundColor: Color.white,
-    borderRadius: 25,
-    shadow: Color.primary,
-    elevation: 4,
-    paddingVertical: 20,
     paddingHorizontal: 20,
-    marginHorizontal: 25,
-    marginTop: 35,
   },
   fieldContainer: {
     gap: 15,
     marginVertical: 10,
+    fontSize: wp("5%"),
   },
   textReason: {
-    fontSize: 16,
+    fontSize: wp("5%"),
     fontFamily: FontFamily.gilroyRegular,
   },
 
@@ -153,8 +135,8 @@ const styles = StyleSheet.create({
     paddingVertical: 20,
     marginBottom: 10,
   },
-  inputStyles: {
-    fontSize: 18,
-    fontFamily: FontFamily.gilroyRegular,
-  },
+  // inputStyles: {
+  //   fontSize: wp("6%"),
+  //   fontFamily: FontFamily.gilroyRegular,
+  // },
 });

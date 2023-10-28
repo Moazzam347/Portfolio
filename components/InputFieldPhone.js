@@ -2,6 +2,10 @@ import { StyleSheet, View, TextInput } from "react-native";
 import React, { useState } from "react";
 import { MaterialIcons } from "@expo/vector-icons";
 import { Color, FontFamily } from "../GlobalStyles";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from "react-native-responsive-screen";
 
 const InputFieldPhone = (props) => {
   const {
@@ -14,7 +18,7 @@ const InputFieldPhone = (props) => {
   } = props;
 
   const textStyle = {
-    width: textInputWidth || 200,
+    width: textInputWidth || wp("60%"),
   };
   const [phoneNumber, setPhoneNumber] = useState("");
 
@@ -45,9 +49,6 @@ const InputFieldPhone = (props) => {
 export default InputFieldPhone;
 
 const styles = StyleSheet.create({
-  inputContainer: {
-    marginTop: 20,
-  },
   inputfieldContainer: {
     flexDirection: "row",
     justifyContent: "flex-start",
@@ -61,8 +62,7 @@ const styles = StyleSheet.create({
     elevation: 1,
   },
   textInput: {
-    fontSize: 16,
+    fontSize: hp("2.2%"),
     fontFamily: FontFamily.gilroyRegular,
-    
   },
 });

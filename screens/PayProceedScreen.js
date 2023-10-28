@@ -1,72 +1,87 @@
-import { StyleSheet, Text, View, Image, Pressable, Modal } from "react-native";
-import React, {useState} from "react";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  Pressable,
+  Modal,
+  ScrollView,
+} from "react-native";
+import React, { useState } from "react";
 import { StatusBar } from "expo-status-bar";
 import TopNavigation from "../components/TopNavigation";
 import { useNavigation } from "@react-navigation/native";
 import { Color, FontFamily } from "../GlobalStyles";
 import InputFieldPhone from "../components/InputFieldPhone";
 import SuccessfullModel from "../components/SuccessfullModel";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from "react-native-responsive-screen";
+import CardViewStyleComponent from "../components/CardViewStyleComponent";
 
 const PayProceedScreen = () => {
-    const navigation = useNavigation();
-    const [modelVisible, setModalVisible] = useState(false);
+  const navigation = useNavigation();
+  const [modelVisible, setModalVisible] = useState(false);
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
       <TopNavigation title={"Pay"} />
 
-      <View style={styles.mainContainer}>
-        {/* upper container */}
-        <View style={styles.imageContainer}>
-          <Image source={require("../assets/wallmart.png")} />
-        </View>
+      <ScrollView
+        contentContainerStyle={[styles.formContainer]}
+        showsVerticalScrollIndicator={false}
+      >
+        <CardViewStyleComponent>
+          {/* upper container */}
+          <View style={styles.imageContainer}>
+            <Image
+              style={styles.imageLogo}
+              source={require("../assets/wallmart.png")}
+            />
+          </View>
 
-        {/* lower container */}
-        <View>
-          {/* Bill Payment Form */}
-          <View style={styles.topBoxContainer}>
-            {/* Amount */}
-            <View style={styles.fieldContainer}>
-              <Text
-                style={[styles.textReason, { fontSize: 18, fontWeight: "600" }]}
-              >
-                Amount
-              </Text>
-              <InputFieldPhone
-                iconName="attach-money"
-                placeholder="Enter Your Amount"
-              />
-            </View>
+          {/* lower container */}
+          <View>
+            {/* Bill Payment Form */}
+            <View style={styles.topBoxContainer}>
+              {/* Amount */}
+              <View style={styles.fieldContainer}>
+                <Text style={[styles.textReason]}>Amount</Text>
+                <InputFieldPhone
+                  iconName="attach-money"
+                  placeholder="Enter Your Amount"
+                />
+              </View>
 
-            {/* Coupon */}
-            <View style={styles.fieldContainer}>
-              <Text
-                style={[styles.textReason, { fontSize: 18, fontWeight: "600" }]}
-              >
-                Coupon
-              </Text>
-              <InputFieldPhone
-                iconName="assignment"
-                placeholder="Your Coupon"
-              />
-            </View>
+              {/* Coupon */}
+              <View style={styles.fieldContainer}>
+                <Text style={[styles.textReason]}>Coupon</Text>
+                <InputFieldPhone
+                  iconName="assignment"
+                  placeholder="Your Coupon"
+                />
+              </View>
 
-            {/* Pay Now Button */}
+              {/* Pay Now Button */}
 
-            <View style={{ alignItems: "center" }}>
-              {/* Button */}
-              <View>
-                <Pressable
-                  onPress={() => setModalVisible(true)}
-                  style={[styles.buttonContainer]}
-                >
-                  <Text style={[styles.buttonText]}>Proceed</Text>
-                </Pressable>
+              <View style={{ alignItems: "center" }}>
+                {/* Button */}
+                <View>
+                  <Pressable
+                    onPress={() => setModalVisible(true)}
+                    style={[styles.buttonContainer]}
+                  >
+                    <Text style={[styles.buttonText]}>Proceed</Text>
+                  </Pressable>
+                </View>
               </View>
             </View>
           </View>
-        </View>
-      </View>
+        </CardViewStyleComponent>
+      </ScrollView>
+
+      {/* <View style={styles.mainContainer}></View> */}
 
       {/* Modal */}
       <Modal
@@ -93,24 +108,31 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: Color.white,
   },
-  mainContainer: {
-    flex: 1,
-    alignItems: "center",
+  formContainer: {
     justifyContent: "flex-start",
-    marginTop: 60,
+    alignItems: "center",
+    paddingBottom: 50,
+    // backgroundColor: Color.white,
+    // marginHorizontal: wp("2%"),
   },
+  // mainContainer: {
+  //   flex: 1,
+  //   alignItems: "center",
+  //   justifyContent: "flex-start",
+  //   marginTop: 60,
+  // },
   imageContainer: {
     alignItems: "center",
     justifyContent: "center",
+    marginTop: wp("10%"),
+  },
+  imageLogo: {
+    width: wp("40%"),
+    height: wp("20%"),
+    resizeMode: "contain",
   },
   topBoxContainer: {
-    backgroundColor: Color.white,
-    borderRadius: 25,
-    shadow: Color.primary,
-    elevation: 4,
-    paddingVertical: 40,
-    paddingHorizontal: 20,
-    marginHorizontal: 25,
+    paddingBottom: 40,
     marginTop: 35,
   },
   fieldContainer: {
@@ -118,8 +140,10 @@ const styles = StyleSheet.create({
     marginVertical: 10,
   },
   textReason: {
-    fontSize: 16,
+    fontSize: wp("4.5%"),
     fontFamily: FontFamily.gilroyRegular,
+    fontWeight: "700",
+    letterSpacing: 1,
   },
   //   Button
   buttonContainer: {
@@ -129,14 +153,13 @@ const styles = StyleSheet.create({
     marginVertical: 10,
     backgroundColor: Color.primary,
     borderRadius: 10,
-    width: 300,
+    width: wp("80%"),
   },
   buttonText: {
-    letterSpacing: 0.2,
-    lineHeight: 26,
+    letterSpacing: 1,
     fontFamily: FontFamily.gilroyBold,
     textAlign: "center",
-    fontSize: 18,
+    fontSize: hp("2.2%"),
     color: Color.white,
   },
 });

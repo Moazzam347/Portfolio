@@ -7,6 +7,10 @@ import { useNavigation } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
 import PayBillComponent from "../components/PayBillComponent";
 import { StatusBar } from "expo-status-bar";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from "react-native-responsive-screen";
 
 const AllPayBillsListScreen = () => {
   const navigation = useNavigation();
@@ -20,16 +24,16 @@ const AllPayBillsListScreen = () => {
     });
   };
   return (
-    <View>
+    <View style={styles.container}>
       <StatusBar style="auto" />
       <TopNavigation title={"Pay Bill"} />
 
       <ScrollView
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={{ paddingBottom: 150 }}
+        contentContainerStyle={{ paddingBottom: 30 }}
       >
         {/* Search Bar */}
-        <View style={{ paddingHorizontal: 20 }}>
+        <View style={{ paddingHorizontal: 20, marginTop: 20, }}>
           <SearchBarComponent />
         </View>
 
@@ -44,7 +48,7 @@ const AllPayBillsListScreen = () => {
             >
               <Ionicons
                 name="md-add-circle-outline"
-                size={24}
+                size={wp("6%")}
                 color={Color.primary}
               />
               <Text style={styles.seeAllText}>Add Bill</Text>
@@ -105,6 +109,10 @@ const AllPayBillsListScreen = () => {
 export default AllPayBillsListScreen;
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: Color.white,
+  },
   transactionHeadingContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
@@ -113,13 +121,13 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
   transactionText: {
-    fontSize: 24,
+    fontSize: wp("6%"),
     color: Color.dark,
     letterSpacing: 1,
     fontFamily: FontFamily.gilroyBold,
   },
   seeAllText: {
-    fontSize: 16,
+    fontSize: wp("4%"),
     color: Color.primary,
     letterSpacing: 1,
     fontFamily: FontFamily.gilroyRegular,

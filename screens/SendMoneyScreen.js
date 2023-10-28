@@ -14,6 +14,11 @@ import InputFieldPhone from "../components/InputFieldPhone";
 import SuccessfullModel from "../components/SuccessfullModel";
 import { StatusBar } from "expo-status-bar";
 import { LinearGradient } from "expo-linear-gradient";
+import CardViewStyleCompnent from "../components/CardViewStyleComponent";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from "react-native-responsive-screen";
 
 const SendMoneyScreen = () => {
     const [modelVisible, setModalVisible] = useState(false);
@@ -43,7 +48,7 @@ const SendMoneyScreen = () => {
 
       <ScrollView
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={{ paddingBottom: 150, paddingHorizontal: 20 }}
+        contentContainerStyle={{ paddingBottom: 100, paddingHorizontal: 20 }}
       >
         {/* Top Box Container */}
         <LinearGradient
@@ -55,7 +60,10 @@ const SendMoneyScreen = () => {
         >
           {/* Image */}
           <View style={[styles.logoContainer]}>
-            <Image source={require("../assets/roundAvatar.png")} />
+            <Image
+              style={styles.logo}
+              source={require("../assets/roundAvatar.png")}
+            />
           </View>
 
           {/* Detail */}
@@ -68,8 +76,10 @@ const SendMoneyScreen = () => {
           </View>
         </LinearGradient>
 
+        <CardViewStyleCompnent>
+
         {/* Bill Payment Form */}
-        <View style={styles.topBoxContainer}>
+        <View>
           {/* Account Name */}
           <View style={styles.fieldContainer}>
             <Text
@@ -128,6 +138,8 @@ const SendMoneyScreen = () => {
             </View>
           </View>
         </View>
+        </CardViewStyleCompnent>
+
       </ScrollView>
 
       {/* Modal */}
@@ -151,19 +163,24 @@ const styles = StyleSheet.create({
   topBoxContainer: {
     padding: 20,
     backgroundColor: Color.white,
-    borderRadius: 25,
+    borderRadius: 20,
     shadow: Color.primary,
     elevation: 4,
     marginTop: 25,
   },
   logoContainer: {
-    width: 60,
-    height: 60,
+    width: wp("25%"),
+    height: wp("25%"),
     borderRadius: 10,
     justifyContent: "center",
     alignItems: "center",
     padding: 10,
     marginTop: 10,
+  },
+  logo: {
+    width: wp("25%"),
+    height: wp("25%"),
+    resizeMode: "contain",
   },
   billDetailContainer: {
     justifyContent: "center",
@@ -171,27 +188,25 @@ const styles = StyleSheet.create({
     marginVertical: 30,
     gap: 5,
   },
-    textPrice: {
-        fontSize: 24,
-        fontFamily: FontFamily.gilroyBold,
-        color: Color.white,
-    },
-    textReason: {
-        fontSize: 18,
-        fontFamily: FontFamily.gilroyRegular,
-        // color: Color.white,
-    },
-    textDate: {
-        fontSize: 16,
-        fontFamily: FontFamily.gilroyRegular,
-        color: Color.white,
-    },
+  textPrice: {
+    fontSize: wp("8%"),
+    fontFamily: FontFamily.gilroyBold,
+    color: Color.white,
+  },
+  textReason: {
+    fontSize: wp("5%"),
+    fontFamily: FontFamily.gilroyRegular,
+    // color: Color.white,
+  },
+  textDate: {
+    fontSize: wp("4%"),
+    fontFamily: FontFamily.gilroyRegular,
+    color: Color.white,
+  },
   fieldContainer: {
     gap: 15,
     marginVertical: 10,
   },
-
-  // Button
 
   //   Button
   buttonContainer: {
@@ -201,14 +216,13 @@ const styles = StyleSheet.create({
     marginVertical: 10,
     backgroundColor: Color.primary,
     borderRadius: 10,
-    width: 300,
+    width: wp("80%"),
   },
   buttonText: {
-    letterSpacing: 0.2,
-    lineHeight: 26,
+    letterSpacing: 1,
     fontFamily: FontFamily.gilroyBold,
     textAlign: "center",
-    fontSize: 18,
+    fontSize: hp("2.2%"),
     color: Color.white,
   },
 });

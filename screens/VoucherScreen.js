@@ -4,6 +4,10 @@ import TopNavigation from "../components/TopNavigation";
 import VoucherCard from "../components/VoucherCard";
 import { Color, FontFamily } from "../GlobalStyles";
 import { StatusBar } from "expo-status-bar";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from "react-native-responsive-screen";
 
 const VoucherScreen = () => {
   return (
@@ -76,15 +80,14 @@ const styles = StyleSheet.create({
    backgroundColor: Color.white, 
   },
     scrollStyle: {
-        paddingHorizontal: 20,
-        paddingBottom: 120,
+        paddingHorizontal: wp("2%"),
+        paddingBottom: 100,
     },
   voucherContainer: {
     flexDirection: "row",
     flexWrap: "wrap",
     justifyContent: "space-evenly",
     alignItems: "center",
-    marginTop: 30,
-    // gap: 20,
+    // marginTop: 30,
   },
 });

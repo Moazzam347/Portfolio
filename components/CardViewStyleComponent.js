@@ -1,6 +1,10 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { Color, FontFamily } from "../GlobalStyles";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from "react-native-responsive-screen";
 
 const CardViewStyleComponent = (props) => {
   const containerSyle = [styles.topBoxContainer, props.style];
@@ -11,11 +15,11 @@ export default CardViewStyleComponent;
 
 const styles = StyleSheet.create({
   topBoxContainer: {
-    padding: 20,
+    padding: wp("5%"),
     backgroundColor: Color.white,
-    borderRadius: 25,
+    borderRadius: 20,
     shadow: Color.primary,
-    elevation: 4,
-    marginTop: 25,
+    elevation: 3,
+    marginTop: 20,
   },
 });

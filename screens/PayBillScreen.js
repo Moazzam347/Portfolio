@@ -16,6 +16,10 @@ import ButtonMain from "../components/ButtonMain";
 import CardViewStyleComponent from "../components/CardViewStyleComponent";
 import SuccessfullModel from "../components/SuccessfullModel";
 import { StatusBar } from "expo-status-bar";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from "react-native-responsive-screen";
 
 const PayBillScreen = () => {
   const navigation = useNavigation();
@@ -25,89 +29,89 @@ const PayBillScreen = () => {
     route.params;
 
   return (
-    <View style={{ backgroundColor: Color.white }}>
+    <View style={styles.container}>
       <StatusBar style="auto" />
       <TopNavigation title={billTitle} />
 
       <ScrollView
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={{ paddingBottom: 150, paddingHorizontal: 20 }}
+        contentContainerStyle={{ paddingBottom: 50, paddingHorizontal: 20 }}
       >
         {/* Top Box Container */}
-        <View style={[styles.topBoxContainer, { alignItems: "center" }]}>
-          {/* Image */}
-          <View
-            style={[
-              styles.logoContainer,
-              { backgroundColor: billLogoBackgroundColor },
-            ]}
-          >
-            <Image source={billLogo} />
-          </View>
-
-          {/* Detail */}
-          <View style={styles.billDetailContainer}>
-            <Text style={styles.textPrice}>$116.49</Text>
-            <Text style={styles.textReason}>{billReason} </Text>
-            <Text style={styles.textDate}>Last Payment Date: 24, May 2024</Text>
-          </View>
-        </View>
-
-        {/* Bill Payment Form */}
-        <View style={styles.topBoxContainer}>
-          {/* Subscriber ID */}
-          <View style={styles.fieldContainer}>
-            <Text
-              style={[styles.textReason, { fontSize: 18, fontWeight: "600" }]}
+        <CardViewStyleComponent>
+          <View style={[{ alignItems: "center" }]}>
+            {/* Image */}
+            <View
+              style={[
+                styles.logoContainer,
+                { backgroundColor: billLogoBackgroundColor },
+              ]}
             >
-              Subscriber ID
-            </Text>
-            <InputFieldPhone
-              iconName="person-outline"
-              placeholder="Your Subscriber ID"
-            />
-          </View>
+              <Image style={styles.logo} source={billLogo} />
+            </View>
 
-          {/* Bill Number */}
-          <View style={styles.fieldContainer}>
-            <Text
-              style={[styles.textReason, { fontSize: 18, fontWeight: "600" }]}
-            >
-              Bill Number
-            </Text>
-            <InputFieldPhone
-              iconName="assignment"
-              placeholder="Your Bill Number"
-            />
-          </View>
-
-          {/* Amount */}
-          <View style={styles.fieldContainer}>
-            <Text
-              style={[styles.textReason, { fontSize: 18, fontWeight: "600" }]}
-            >
-              Amount
-            </Text>
-            <InputFieldPhone
-              iconName="attach-money"
-              placeholder="Enter Your Amount"
-            />
-          </View>
-
-          {/* Pay Now Button */}
-
-          <View style={{ alignItems: "center" }}>
-            {/* Button */}
-            <View>
-              <Pressable
-                onPress={() => setModalVisible(true)}
-                style={[styles.buttonContainer]}
-              >
-                <Text style={[styles.buttonText]}>Pay Now</Text>
-              </Pressable>
+            {/* Detail */}
+            <View style={styles.billDetailContainer}>
+              <Text style={styles.textPrice}>$116.49</Text>
+              <Text style={styles.textReason}>{billReason} </Text>
+              <Text style={styles.textDate}>
+                Last Payment Date: 24, May 2024
+              </Text>
             </View>
           </View>
-        </View>
+        </CardViewStyleComponent>
+
+        {/* Bill Payment Form */}
+        <CardViewStyleComponent>
+          <View style={{}}>
+            {/* Subscriber ID */}
+            <View style={styles.fieldContainer}>
+              <Text style={[styles.textReason, { fontSize: wp("5%") }]}>
+                Subscriber ID
+              </Text>
+              <InputFieldPhone
+                iconName="person-outline"
+                placeholder="Your Subscriber ID"
+              />
+            </View>
+
+            {/* Bill Number */}
+            <View style={styles.fieldContainer}>
+              <Text style={[styles.textReason, { fontSize: wp("5%") }]}>
+                Bill Number
+              </Text>
+              <InputFieldPhone
+                iconName="assignment"
+                placeholder="Your Bill Number"
+              />
+            </View>
+
+            {/* Amount */}
+            <View style={styles.fieldContainer}>
+              <Text style={[styles.textReason, { fontSize: wp("5%") }]}>
+                Amount
+              </Text>
+              <InputFieldPhone
+                iconName="attach-money"
+                placeholder="Enter Your Amount"
+              />
+            </View>
+
+            {/* Pay Now Button */}
+
+            <View style={{ alignItems: "center" }}>
+              {/* Button */}
+              <View>
+                <Pressable
+                  onPress={() => setModalVisible(true)}
+                  style={[styles.buttonContainer]}
+                >
+                  <Text style={[styles.buttonText]}>Pay Now</Text>
+                </Pressable>
+              </View>
+            </View>
+          </View>
+        </CardViewStyleComponent>
       </ScrollView>
 
       {/* Modal */}
@@ -128,38 +132,46 @@ const PayBillScreen = () => {
 export default PayBillScreen;
 
 const styles = StyleSheet.create({
-  topBoxContainer: {
-    padding: 20,
+  container: {
+    flex: 1,
     backgroundColor: Color.white,
-    borderRadius: 25,
-    shadow: Color.primary,
-    elevation: 4,
-    marginTop: 25,
   },
   logoContainer: {
-    width: 60,
-    height: 60,
+    width: wp("20%"),
+    height: wp("20%"),
     borderRadius: 10,
     justifyContent: "center",
     alignItems: "center",
     padding: 10,
     marginTop: 10,
   },
+  logo: {
+    width: wp("10%"),
+    height: wp("10%"),
+    resizeMode: "contain",
+  },
   billDetailContainer: {
     justifyContent: "center",
     alignItems: "center",
     marginVertical: 30,
-    gap: 5,
+    gap: 8,
   },
-  textPrice: { fontSize: 20, fontFamily: FontFamily.gilroyBold },
-  textReason: { fontSize: 16, fontFamily: FontFamily.gilroyRegular },
-  textDate: { fontSize: 14, fontFamily: FontFamily.gilroyRegular },
+  textPrice: {
+    fontSize: wp("6%"),
+    fontFamily: FontFamily.gilroyBold,
+  },
+  textReason: {
+    fontSize: wp("4.4%"),
+    fontFamily: FontFamily.gilroyRegular,
+  },
+  textDate: {
+    fontSize: wp("4%"),
+    fontFamily: FontFamily.gilroyRegular,
+  },
   fieldContainer: {
     gap: 15,
     marginVertical: 10,
   },
-
-  // Button
 
   //   Button
   buttonContainer: {
@@ -169,14 +181,13 @@ const styles = StyleSheet.create({
     marginVertical: 10,
     backgroundColor: Color.primary,
     borderRadius: 10,
-    width: 300,
+    width: wp("80%"),
   },
   buttonText: {
-    letterSpacing: 0.2,
-    lineHeight: 26,
+    letterSpacing: 1,
     fontFamily: FontFamily.gilroyBold,
     textAlign: "center",
-    fontSize: 18,
+    fontSize: hp("2.2%"),
     color: Color.white,
   },
 });

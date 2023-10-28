@@ -3,6 +3,11 @@ import React, { useState } from "react";
 import { Color, FontFamily } from "../GlobalStyles";
 import ExpoStatusBar from "expo-status-bar/build/ExpoStatusBar";
 import { useNavigation } from "@react-navigation/native";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from "react-native-responsive-screen";
+
 
 const SuccessfullModel = (props) => {
   const {
@@ -18,7 +23,10 @@ const SuccessfullModel = (props) => {
       <View style={styles.mainContainer}>
         {/* Image */}
         <View style={{ marginVertical: 40 }}>
-          <Image source={require("../assets/successfullTick.png")} />
+          <Image
+            style={styles.imageStyle}
+            source={require("../assets/successfullTick.png")}
+          />
         </View>
 
         {/* Text */}
@@ -62,11 +70,16 @@ const styles = StyleSheet.create({
     borderRadius: 25,
     shadow: Color.primary,
     elevation: 4,
-    padding: 20,
+    padding: wp("6%"),
     alignItems: "center",
     justifyContent: "center",
-    marginHorizontal: 20,
-    paddingVertical: 50,
+    marginHorizontal: wp("5%"),
+    paddingVertical: wp("5%"),
+  },
+  imageStyle: {
+    width: wp("40%"),
+    height: wp("40%"),
+    resizeMode: "contain",
   },
   billDetailContainer: {
     justifyContent: "center",
@@ -75,17 +88,17 @@ const styles = StyleSheet.create({
     gap: 10,
   },
   textSuccess: {
-    fontSize: 30,
+    fontSize: hp("4%"),
     fontFamily: FontFamily.gilroyBold,
   },
   textDetail: {
-    fontSize: 18,
+    fontSize: hp("2.4%"),
     fontFamily: FontFamily.gilroyRegular,
     paddingHorizontal: 10,
     textAlign: "center",
   },
   textTransaction: {
-    fontSize: 18,
+    fontSize: hp("2.2%"),
     fontFamily: FontFamily.gilroyRegular,
     color: Color.primary,
   },
@@ -98,14 +111,13 @@ const styles = StyleSheet.create({
     marginVertical: 10,
     backgroundColor: Color.primary,
     borderRadius: 10,
-    width: 200,
+    width: wp("70%"),
   },
   buttonText: {
-    letterSpacing: 0.2,
-    lineHeight: 26,
+    letterSpacing: 1,
     fontFamily: FontFamily.gilroyBold,
     textAlign: "center",
-    fontSize: 18,
+    fontSize: hp("2.2%"),
     color: Color.white,
   },
 });

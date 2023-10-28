@@ -5,6 +5,10 @@ import { Ionicons } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Color, FontFamily } from "../GlobalStyles";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from "react-native-responsive-screen";
 
 const HomeTopNavigation = (props) => {
   const navigation = useNavigation();
@@ -45,8 +49,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   imageContainer: {
-    width: 40,
-    height: 40,
+    width: wp("10%"),
+    height: wp("10%"),
     borderRadius: 10,
     justifyContent: "center",
     alignItems: "center",
@@ -54,12 +58,12 @@ const styles = StyleSheet.create({
     backgroundColor: Color.lightOrange,
   },
   imageStyle: {
-    width: 30,
-    height: 30,
+    width: wp("7%"),
+    height: wp("7%"),
     resizeMode: "contain",
   },
   navigationText: {
-    fontSize: 24,
+    fontSize: hp("3%"),
     fontWeight: "bold",
     color: Color.dark,
     fontFamily: FontFamily.gilroyBold,

@@ -3,6 +3,10 @@ import React from "react";
 import { Color, FontFamily } from "../GlobalStyles";
 import { useNavigation } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from "react-native-responsive-screen";
 
 const PayBillComponent = (props) => {
   const navigation = useNavigation();
@@ -28,7 +32,7 @@ const PayBillComponent = (props) => {
     <Pressable style={styles.container} onPress={handleBillPress}>
       <View style={styles.leftContainer}>
         <View style={[styles.logoContainer, payBillStyles]}>
-          <Image source={logo} />
+          <Image style={styles.logo} source={logo} />
         </View>
         <View style={styles.textContainer}>
           <Text style={styles.textTitle}> {title} </Text>
@@ -37,7 +41,7 @@ const PayBillComponent = (props) => {
         </View>
       </View>
       <View>
-        <Ionicons name="chevron-forward" size={30} color={Color.dark} />
+        <Ionicons name="chevron-forward" size={wp("7%")} color={Color.dark} />
       </View>
     </Pressable>
   );
@@ -54,7 +58,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
     backgroundColor: Color.white,
     marginVertical: 5,
-    // marginHorizontal: 10,
     borderRadius: 10,
     shadow: Color.primary,
     elevation: 1,
@@ -66,24 +69,29 @@ const styles = StyleSheet.create({
     gap: 10,
   },
   logoContainer: {
-    width: 60,
-    height: 60,
+    width: wp("15%"),
+    height: wp("15%"),
     borderRadius: 8,
     justifyContent: "center",
     alignItems: "center",
     padding: 10,
+  },
+  logo: {
+    width: wp("8%"),
+    height: wp("8%"),
+    resizeMode: "contain",
   },
   textContainer: {
     gap: 5,
   },
   textTitle: {
     fontFamily: FontFamily.gilroyBold,
-    fontSize: 18,
+    fontSize: wp("5%"),
     color: Color.dark,
   },
   textReason: {
     fontFamily: FontFamily.gilroyRegular,
-    fontSize: 16,
+    fontSize: wp("4%"),
     color: Color.dark,
     paddingLeft: 5,
   },

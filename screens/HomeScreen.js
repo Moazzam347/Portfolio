@@ -7,6 +7,10 @@ import DebitCard from "../components/DebitCard";
 import TransactionCard from "../components/TransactionCard";
 import HomeTopNavigation from "../components/HomeTopNavigation";
 import { StatusBar } from "expo-status-bar";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from "react-native-responsive-screen";
 
 const HomeScreen = () => {
   const navigation = useNavigation();
@@ -56,6 +60,7 @@ const HomeScreen = () => {
             justifyContent: "space-between",
             flexWrap: "wrap",
             paddingHorizontal: 20,
+            marginBottom: 10,
           }}
         >
           <CardCategory
@@ -172,13 +177,13 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
   transactionText: {
-    fontSize: 24,
+    fontSize: wp("5.3%"),
     color: Color.dark,
     letterSpacing: 1,
     fontFamily: FontFamily.gilroyBold,
   },
   seeAllText: {
-    fontSize: 16,
+    fontSize: wp("4%"),
     color: Color.primary,
     letterSpacing: 1,
     fontFamily: FontFamily.gilroyRegular,

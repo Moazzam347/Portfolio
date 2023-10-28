@@ -3,6 +3,10 @@ import React, { useState } from "react";
 import { Color, FontFamily } from "../GlobalStyles";
 import { useNavigation } from "@react-navigation/native";
 import { MaterialIcons } from "@expo/vector-icons";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from "react-native-responsive-screen";
 
 const TagButton = (props) => {
   const navigation = useNavigation();
@@ -46,7 +50,7 @@ const TagButton = (props) => {
         onPress={() => handleButtonPress("Received")}
       >
         <View style={styles.arrowContainer}>
-          <MaterialIcons name="arrow-downward" size={20} color="white" />
+          <MaterialIcons name="arrow-downward" size={wp("5%")} color="white" />
         </View>
         <Text
           style={[
@@ -67,7 +71,7 @@ const TagButton = (props) => {
         onPress={() => handleButtonPress("Spend")}
       >
         <View style={[styles.arrowContainer, { backgroundColor: Color.error }]}>
-          <MaterialIcons name="arrow-upward" size={20} color="white" />
+          <MaterialIcons name="arrow-upward" size={wp("5%")} color="white" />
         </View>
         <Text
           style={[
@@ -93,24 +97,24 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     flexDirection: "row",
-    gap: 15,
+    gap: wp("2%"),
     backgroundColor: Color.white,
     paddingVertical: 10,
-    paddingHorizontal: 20,
+    paddingHorizontal: 17,
     borderRadius: 50,
     shadow: Color.white,
     elevation: 5,
   },
   buttonText: {
-    fontSize: 18,
+    fontSize: wp("4%"),
     color: Color.textBlack,
     fontFamily: FontFamily.gilroyRegular,
     textAlign: "center",
     fontWeight: "700",
   },
   arrowContainer: {
-    width: 25,
-    height: 25,
+    width: wp("6%"),
+    height: wp("6%"),
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 30,

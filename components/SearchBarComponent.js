@@ -4,6 +4,10 @@ import { MaterialIcons } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
 import { Feather } from "@expo/vector-icons";
 import { Color, FontFamily } from "../GlobalStyles";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from "react-native-responsive-screen";
 
 const SearchBarComponent = (props) => {
   const {
@@ -18,7 +22,11 @@ const SearchBarComponent = (props) => {
       {/* searchQuery */}
       <View style={styles.inputfieldContainer}>
         <View style={styles.leftContainer}>
-          <MaterialIcons name={iconname} size={30} color={Color.textGrey} />
+          <MaterialIcons
+            name={iconname}
+            size={wp("7%")}
+            color={Color.textGrey}
+          />
           <TextInput
             style={styles.textInput}
             placeholder={placeholder}
@@ -27,7 +35,7 @@ const SearchBarComponent = (props) => {
           />
         </View>
         <Pressable>
-          <Feather name="sliders" size={24} color={Color.textGrey} />
+          <Feather name="sliders" size={wp("6%")} color={Color.textGrey} />
         </Pressable>
       </View>
     </View>
@@ -60,6 +68,6 @@ const styles = StyleSheet.create({
   textInput: {
     fontSize: 16,
     fontFamily: FontFamily.gilroyRegular,
-    width: 200,
+    width: wp("60%"),
   },
 });

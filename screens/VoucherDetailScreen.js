@@ -5,13 +5,21 @@ import { Color, FontFamily } from "../GlobalStyles";
 import TopNavigation from "../components/TopNavigation";
 import ButtonMain from "../components/ButtonMain";
 import { useNavigation } from "@react-navigation/native";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from "react-native-responsive-screen";
 
 const VoucherDetailScreen = () => {
   const navigation = useNavigation();
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
-      <TopNavigation title={"Nike"} iconColor={Color.white} />
+      <TopNavigation
+        title={"Nike"}
+        iconColor={Color.white}
+        backgroundColor={"#CD051F"}
+      />
 
       {/* upper Container */}
       <View style={styles.upperContainer}>
@@ -69,58 +77,55 @@ const styles = StyleSheet.create({
   upperContainer: {
     justifyContent: "center",
     alignItems: "center",
-    paddingTop: 20,
-    paddingBottom: 50,
+    paddingBottom: hp("4%"),
   },
   textNumber: {
     color: Color.white,
     fontFamily: FontFamily.gilroyBold,
-    fontSize: 84,
+    fontSize: wp("20%"),
     fontWeight: "bold",
     letterSpacing: 1,
   },
   textCashback: {
     color: Color.white,
     fontFamily: FontFamily.gilroyBold,
-    fontSize: 44,
+    fontSize: wp("10%"),
     fontWeight: "bold",
     letterSpacing: 1,
   },
   textDate: {
     color: Color.white,
     fontFamily: FontFamily.gilroyRegular,
-    fontSize: 24,
+    fontSize: wp("5%"),
     letterSpacing: 1,
     marginTop: 10,
   },
 
   // lower Container
   lowerContainer: {
-    backgroundColor: Color.white,
-    borderTopLeftRadius: 50,
-    borderTopRightRadius: 50,
     flex: 1,
-    paddingHorizontal: 24,
-    paddingTop: 40,
+    backgroundColor: Color.white,
+    borderTopLeftRadius: hp("7%"),
+    borderTopRightRadius: hp("7%"),
+    paddingHorizontal: wp("6%"),
+    paddingTop: hp("5%"),
   },
-  ScrollViewStyle: {},
   textContainer: {
     marginBottom: 20,
   },
   textInstructionsHeading: {
-    fontSize: 20,
+    fontSize: wp("5%"),
     fontFamily: FontFamily.gilroyBold,
-    paddingTop: 10,
   },
   textInstructions: {
-    fontSize: 16,
+    fontSize: wp("4%"),
     fontFamily: FontFamily.gilroyRegular,
     marginTop: 10,
-    lineHeight: 28,
+    lineHeight: wp("7%"),
   },
   buttonContainer: {
     justifyContent: "center",
     alignItems: "center",
-    paddingVertical: 20,
+    paddingBottom: hp("1%"),
   },
 });

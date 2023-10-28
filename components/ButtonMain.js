@@ -7,6 +7,10 @@ import {
 } from "react-native";
 import React from "react";
 import { Color, FontFamily } from "../GlobalStyles";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from "react-native-responsive-screen";
 
 const ButtonMain = (props) => {
   const { height, width } = useWindowDimensions();
@@ -23,11 +27,12 @@ const ButtonMain = (props) => {
 
   const buttonStyles = {
     backgroundColor: buttonColor || Color.primary,
-    width: buttonWidth || width * 0.75,
+    width: buttonWidth || wp("80%"),
     borderRadius: buttonRadius || 15,
-    fontSize: buttonTextSize || 18,
+    fontSize: buttonTextSize || hp("2.2%"),
     color: buttonTextColor || "#fff",
   };
+
   return (
     <View>
       <TouchableOpacity
@@ -50,8 +55,7 @@ const styles = StyleSheet.create({
     marginVertical: 10
   },
   buttonText: {
-    letterSpacing: 0.2,
-    lineHeight: 26,
+    letterSpacing: 1,
     fontFamily: FontFamily.gilroyBold,
     textAlign: "center",
   },

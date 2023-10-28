@@ -5,10 +5,13 @@ import TopNavigation from "../components/TopNavigation";
 import DebitCard from "../components/DebitCard";
 import CardViewStyleComponent from "../components/CardViewStyleComponent";
 import { Color, FontFamily } from "../GlobalStyles";
-import InputFieldPhone from "../components/InputFieldPhone";
 import { MaterialIcons } from "@expo/vector-icons";
 import TransactionCard from "../components/TransactionCard";
 import { useNavigation } from "@react-navigation/native";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from "react-native-responsive-screen";
 
 const CardDetailScreen = () => {
   const navigation = useNavigation();
@@ -47,7 +50,7 @@ const CardDetailScreen = () => {
                 <Text style={[styles.text]}>(June)</Text>
               </View>
               <View>
-                <Text style={[styles.text, { fontSize: 24 }]}>$9086</Text>
+                <Text style={[styles.text, { fontSize: hp("3%") }]}>$9086</Text>
               </View>
             </View>
 
@@ -55,11 +58,10 @@ const CardDetailScreen = () => {
             <View>
               <View style={styles.textFirstContainer}>
                 <Text style={[styles.text]}>Available</Text>
-                {/* <Text style={[styles.text]}>(June)</Text> */}
               </View>
               <View>
                 <Text
-                  style={[styles.text, { fontSize: 34, fontWeight: "bold" }]}
+                  style={[styles.text, { fontSize: hp("4%"), fontWeight: "bold" }]}
                 >
                   $9086
                 </Text>
@@ -73,7 +75,7 @@ const CardDetailScreen = () => {
                 <Text style={[styles.text]}>(June)</Text>
               </View>
               <View>
-                <Text style={[styles.text, { fontSize: 24 }]}>$4642</Text>
+                <Text style={[styles.text, { fontSize: hp("3%") }]}>$4642</Text>
               </View>
             </View>
           </CardViewStyleComponent>
@@ -223,7 +225,9 @@ const CardDetailScreen = () => {
 export default CardDetailScreen;
 
 const styles = StyleSheet.create({
-  container: {},
+  container: {
+    backgroundColor: Color.white,
+  },
   scrollContainer: {},
 
   // First container
@@ -248,6 +252,7 @@ const styles = StyleSheet.create({
     color: Color.textBlack,
     letterSpacing: 0.2,
     textAlign: "center",
+    fontSize: hp("2%"),
   },
 
   // Third container
@@ -256,7 +261,7 @@ const styles = StyleSheet.create({
     fontFamily: FontFamily.gilroyRegular,
     color: Color.textBlack,
     letterSpacing: 0.2,
-    fontSize: 18,
+    fontSize: wp("4.3%"),
     marginVertical: 5,
   },
   informationField: {
@@ -274,12 +279,12 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    paddingVertical: 20,
-    paddingHorizontal: 20,
+    paddingTop: 20,
+    paddingHorizontal: wp("2%"),
     marginTop: 20,
   },
   transactionText: {
-    fontSize: 24,
+    fontSize: wp("6%"),
     color: Color.dark,
     letterSpacing: 1,
     fontFamily: FontFamily.gilroyBold,

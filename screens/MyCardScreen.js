@@ -40,10 +40,11 @@ export default MyCardScreen
 
 const styles = StyleSheet.create({
   mainScrollView: {
-    paddingBottom: 120,
+    paddingBottom: 100,
     alignItems: 'center',
     justifyContent: 'center',
     gap: 10,
     backgroundColor: Color.white,
+    paddingTop: 10,
   },
 });

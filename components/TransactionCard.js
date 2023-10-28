@@ -2,6 +2,10 @@ import { StyleSheet, Text, View, Image, Pressable } from "react-native";
 import React from "react";
 import { Color, FontFamily } from "../GlobalStyles";
 import { useNavigation } from "@react-navigation/native";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from "react-native-responsive-screen";
 
 const TransactionCard = (props) => {
   const navigation = useNavigation();
@@ -22,7 +26,7 @@ const TransactionCard = (props) => {
     <Pressable style={styles.container} onPress={transactionNavigation}>
       <View style={styles.leftContainer}>
         <View>
-          <Image source={logo} />
+          <Image style={styles.logo} source={logo} />
         </View>
         <View style={styles.textContainer}>
           <Text style={styles.textTitle}> {title} </Text>
@@ -48,7 +52,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
     backgroundColor: Color.white,
     marginVertical: 5,
-    // marginHorizontal: 10,
     borderRadius: 10,
     shadow: Color.primary,
     elevation: 1,
@@ -59,18 +62,24 @@ const styles = StyleSheet.create({
     alignItems: "center",
     gap: 10,
   },
+  logo: {
+    width: wp("15%"),
+    height: wp("15%"),
+    resizeMode: "contain",
+  },
   textContainer: {
     gap: 5,
   },
   textTitle: {
     fontFamily: FontFamily.gilroyBold,
-    fontSize: 18,
+    fontSize: wp("4.5%"),
     color: Color.dark,
   },
   textReason: {
     fontFamily: FontFamily.gilroyRegular,
-    fontSize: 16,
+    fontSize: wp("4%"),
     color: Color.dark,
+    paddingLeft: 5,
   },
   rightContainer: {
     justifyContent: "flex-end",
@@ -79,13 +88,13 @@ const styles = StyleSheet.create({
   textPrice: {
     textAlign: "right",
     fontFamily: FontFamily.gilroyBold,
-    fontSize: 20,
+    fontSize: wp("4.5%"),
     color: Color.textGreen,
   },
   textTime: {
     textAlign: "right",
     fontFamily: FontFamily.gilroyRegular,
-    fontSize: 16,
+    fontSize: wp("4%"),
     color: Color.dark,
   },
 });

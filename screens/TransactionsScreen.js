@@ -5,6 +5,10 @@ import TransactionCard from "../components/TransactionCard";
 import { Color, FontFamily } from "../GlobalStyles";
 import TagButton from "../components/TagButton";
 import { StatusBar } from "expo-status-bar";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from "react-native-responsive-screen";
 
 const TransactionsScreen = () => {
   return (
@@ -17,7 +21,7 @@ const TransactionsScreen = () => {
         contentContainerStyle={styles.mainScrollView}
       >
         <View>
-          <View style={{ marginTop: 20 }}>
+          <View style={{ marginVertical: 20 }}>
             <TagButton title="All" />
           </View>
           <View>
@@ -48,7 +52,6 @@ const TransactionsScreen = () => {
               logo={require("../assets/uber.png")}
               priceColor={Color.textRed}
             />
-
             <TransactionCard
               title="Foodpanda"
               price="- $15.85"
@@ -88,7 +91,6 @@ const TransactionsScreen = () => {
               logo={require("../assets/uber.png")}
               priceColor={Color.textRed}
             />
-
             <TransactionCard
               title="Foodpanda"
               price="- $15.85"
@@ -112,7 +114,7 @@ const styles = StyleSheet.create({
     paddingBottom: 120,
   },
   headingStyle: {
-    fontSize: 20,
+    fontSize: wp("5%"),
     color: Color.dark,
     letterSpacing: 1,
     fontFamily: FontFamily.gilroyRegular,

@@ -1,4 +1,12 @@
-import { StyleSheet, Text, View, Image, Pressable, Modal } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  Pressable,
+  Modal,
+  ScrollView,
+} from "react-native";
 import React, { useState } from "react";
 import TopNavigation from "../components/TopNavigation";
 import { Color, FontFamily } from "../GlobalStyles";
@@ -6,6 +14,10 @@ import OTPInputView from "react-native-otp-ultimate";
 import SuccessfullModel from "../components/SuccessfullModel";
 import { useNavigation } from "@react-navigation/native";
 import { StatusBar } from "expo-status-bar";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from "react-native-responsive-screen";
 
 const VerificationScreen = () => {
   const navigation = useNavigation();
@@ -15,53 +27,60 @@ const VerificationScreen = () => {
       <StatusBar style="auto" />
       <TopNavigation title={"Verification"} />
 
-      {/* Image and Heading */}
-      <View style={styles.upperContainer}>
-        {/* Image */}
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={styles.scrollStyle}
+      >
         <View>
-          <Image
-            style={styles.imageStyle}
-            source={require("../assets/verification.png")}
-          />
-        </View>
-        {/* Heading and Sub */}
-        <View>
-          <Text style={styles.headingText}>Verification</Text>
-          <Text style={styles.subText}>
-            Enter the 4-digit code sent to your phone number
-          </Text>
-        </View>
-      </View>
+          {/* Image and Heading */}
+          <View style={styles.upperContainer}>
+            {/* Image */}
+            <View>
+              <Image
+                style={styles.imageStyle}
+                source={require("../assets/verification.png")}
+              />
+            </View>
+            {/* Heading and Sub */}
+            <View>
+              <Text style={styles.headingText}>Verification</Text>
+              <Text style={styles.subText}>
+                Enter the 4-digit code sent to your phone number
+              </Text>
+            </View>
+          </View>
 
-      {/* OTP and Resend Text */}
-      <View style={styles.upperContainer}>
-        <OTPInputView
-          tintColor={Color.primary}
-          offTintColor="#C4C4C4"
-          inputCellLength={1}
-          inputCount={4}
-          containerStyle={styles.otpContainerStyle}
-          textInputStyle={styles.otpTextInputStyle}
-        />
-        <View style={styles.resendContainer}>
-          <Text style={[styles.subText, { fontSize: 16 }]}>
-            I didn’t receive the code{" "}
-          </Text>
-          <Pressable>
-            <Text style={styles.resendText}>Resend code</Text>
+          {/* OTP and Resend Text */}
+          <View style={styles.upperContainer}>
+            <OTPInputView
+              tintColor={Color.primary}
+              offTintColor="#C4C4C4"
+              inputCellLength={1}
+              inputCount={4}
+              containerStyle={styles.otpContainerStyle}
+              textInputStyle={styles.otpTextInputStyle}
+            />
+            <View style={styles.resendContainer}>
+              <Text style={[styles.subText, { fontSize: hp("2%") }]}>
+                I didn’t receive the code
+              </Text>
+              <Pressable>
+                <Text style={styles.resendText}>Resend code</Text>
+              </Pressable>
+            </View>
+          </View>
+        </View>
+
+        {/* Button */}
+        <View style={[styles.lowerContainer]}>
+          <Pressable
+            onPress={() => setModalVisible(true)}
+            style={[styles.buttonContainer]}
+          >
+            <Text style={[styles.buttonText]}>Verify</Text>
           </Pressable>
         </View>
-      </View>
-
-      {/* Button */}
-      <View style={styles.upperContainer}>
-        <Pressable
-          onPress={() => setModalVisible(true)}
-          style={[styles.buttonContainer]}
-        >
-          <Text style={[styles.buttonText]}>Verify</Text>
-        </Pressable>
-      </View>
+      </ScrollView>
 
       {/* Modal */}
       <Modal
@@ -88,27 +107,34 @@ export default VerificationScreen;
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     backgroundColor: Color.white,
+  },
+  scrollStyle: {
+    flex: 1,
+    justifyContent: "space-between",
   },
 
   //Upper Container
   upperContainer: {
     justifyContent: "center",
     alignItems: "center",
-    // padding: 20,
     marginVertical: 30,
   },
-  imageStyle: {},
+  imageStyle: {
+    width: wp("40%"),
+    height: wp("40%"),
+    resizeMode: "contain",
+  },
   headingText: {
     fontFamily: FontFamily.gilroyBold,
-    fontSize: 30,
+    fontSize: hp("5%"),
     color: Color.dark,
     textAlign: "center",
-    marginVertical: 10,
-    marginTop: 50,
+    marginTop: 30,
   },
   subText: {
-    fontSize: 20,
+    fontSize: hp("2.6%"),
     color: Color.textGrey,
     paddingHorizontal: 25,
     fontFamily: FontFamily.gilroyRegular,
@@ -117,9 +143,7 @@ const styles = StyleSheet.create({
   },
 
   // middle Container
-  middleContainer: {},
-  otpContainerStyle: {},
-  otpTextInputStyle: {},
+  otpContainerStyle: { marginTop: wp("-10%") },
   resendContainer: {
     marginTop: 20,
   },
@@ -127,29 +151,32 @@ const styles = StyleSheet.create({
   resendText: {
     color: Color.primary,
     fontFamily: FontFamily.gilroyBold,
-    fontSize: 16,
+    fontSize: hp("2%"),
     textAlign: "center",
   },
 
   // lower Container
-  lowerContainer: {},
+  lowerContainer: {
+    justifyContent: "center",
+    alignItems: "center",
+    // marginVertical: 30,
+    marginBottom: 50,
+  },
 
   //   Button
   buttonContainer: {
     justifyContent: "center",
     alignItems: "center",
     padding: 20,
-    marginVertical: 10,
     backgroundColor: Color.primary,
     borderRadius: 10,
-    width: 300,
+    width: wp("80%"),
   },
   buttonText: {
-    letterSpacing: 0.2,
-    lineHeight: 26,
+    letterSpacing: 1,
     fontFamily: FontFamily.gilroyBold,
     textAlign: "center",
-    fontSize: 18,
+    fontSize: hp("2.2%"),
     color: Color.white,
   },
 });

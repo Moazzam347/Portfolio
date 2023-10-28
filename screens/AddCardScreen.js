@@ -1,4 +1,11 @@
-import { StyleSheet, Text, View, ScrollView, Modal, Pressable } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  ScrollView,
+  Modal,
+  Pressable,
+} from "react-native";
 import React, { useState } from "react";
 import { StatusBar } from "expo-status-bar";
 import TopNavigation from "../components/TopNavigation";
@@ -8,6 +15,11 @@ import InputFieldPhone from "../components/InputFieldPhone";
 import ButtonMain from "../components/ButtonMain";
 import DebitCard from "../components/DebitCard";
 import SuccessfullModel from "../components/SuccessfullModel";
+import CardViewStyleCompnent from "../components/CardViewStyleComponent";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from "react-native-responsive-screen";
 
 const AddCardScreen = () => {
   const navigation = useNavigation();
@@ -61,99 +73,83 @@ const AddCardScreen = () => {
             expiryDate={expiry}
             cardNumber={number}
             cvv={cvv}
+            cardNavigation={() => navigation.navigate("AddCard")}
           />
         </View>
 
-        {/* lower container */}
-        <View>
-          {/* Bill Payment Form */}
-          <View style={styles.topBoxContainer}>
-            {/* Cardholder Name */}
-            <View style={styles.fieldContainer}>
-              <Text
-                style={[styles.textReason, { fontSize: 18, fontWeight: "600" }]}
-              >
-                Cardholder Name
-              </Text>
-              <InputFieldPhone
-                iconName="person-outline"
-                placeholder="Name"
-                getPhoneNumber={handleName}
-              />
-            </View>
-
-            {/* Card Number */}
-            <View style={styles.fieldContainer}>
-              <Text
-                style={[styles.textReason, { fontSize: 18, fontWeight: "600" }]}
-              >
-                Card Number
-              </Text>
-              <InputFieldPhone
-                iconName="credit-card"
-                placeholder="Digits"
-                keyboardType={"numeric"}
-                getPhoneNumber={handleNumber}
-                maxLength={16}
-              />
-            </View>
-
-            {/* Expires and CVV */}
-            <View
-              style={{ flexDirection: "row", justifyContent: "space-between" }}
-            >
-              {/*  Expires */}
+        <CardViewStyleCompnent>
+          {/* lower container */}
+          <View>
+            {/* Bill Payment Form */}
+            <View style={styles.topBoxContaine}>
+              {/* Cardholder Name */}
               <View style={styles.fieldContainer}>
-                <Text
-                  style={[
-                    styles.textReason,
-                    { fontSize: 18, fontWeight: "600" },
-                  ]}
-                >
-                  Expires
-                </Text>
+                <Text style={[styles.textReason]}>Cardholder Name</Text>
                 <InputFieldPhone
-                  iconName="calendar-today"
-                  placeholder="Date"
-                  textInputWidth={70}
-                  keyboardType={"name-phone-pad"}
-                  getPhoneNumber={handleExpiry}
-                  maxLength={5}
+                  iconName="person-outline"
+                  placeholder="Name"
+                  getPhoneNumber={handleName}
                 />
               </View>
-              {/* CVV */}
+
+              {/* Card Number */}
               <View style={styles.fieldContainer}>
-                <Text
-                  style={[
-                    styles.textReason,
-                    { fontSize: 18, fontWeight: "600" },
-                  ]}
-                >
-                  CVV
-                </Text>
+                <Text style={[styles.textReason]}>Card Number</Text>
                 <InputFieldPhone
-                  iconName="lock-outline"
-                  placeholder="Code"
+                  iconName="credit-card"
+                  placeholder="Digits"
                   keyboardType={"numeric"}
-                  textInputWidth={70}
-                  getPhoneNumber={handleCvv}
-                  maxLength={3}
+                  getPhoneNumber={handleNumber}
+                  maxLength={16}
                 />
               </View>
-            </View>
 
-            {/* Pay Now Button */}
-            <View style={{ alignItems: "center" }}>
-              {/* Button */}
-              <Pressable
-                onPress={() => setModalVisible(true)}
-                style={[styles.buttonContainer]}
+              {/* Expires and CVV */}
+              <View
+                style={{
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                }}
               >
-                <Text style={[styles.buttonText]}>Proceed</Text>
-              </Pressable>
+                {/*  Expires */}
+                <View style={styles.fieldContainer}>
+                  <Text style={[styles.textReason]}>Expires</Text>
+                  <InputFieldPhone
+                    iconName="calendar-today"
+                    placeholder="Date"
+                    textInputWidth={wp("15%")}
+                    keyboardType={"name-phone-pad"}
+                    getPhoneNumber={handleExpiry}
+                    maxLength={5}
+                  />
+                </View>
+                {/* CVV */}
+                <View style={styles.fieldContainer}>
+                  <Text style={[styles.textReason]}>CVV</Text>
+                  <InputFieldPhone
+                    iconName="lock-outline"
+                    placeholder="Code"
+                    keyboardType={"numeric"}
+                    textInputWidth={wp("15%")}
+                    getPhoneNumber={handleCvv}
+                    maxLength={3}
+                  />
+                </View>
+              </View>
+
+              {/* Pay Now Button */}
+              <View style={{ alignItems: "center" }}>
+                {/* Button */}
+                <Pressable
+                  onPress={() => setModalVisible(true)}
+                  style={[styles.buttonContainer]}
+                >
+                  <Text style={[styles.buttonText]}>Proceed</Text>
+                </Pressable>
+              </View>
             </View>
           </View>
-        </View>
+        </CardViewStyleCompnent>
       </ScrollView>
 
       {/* Modal */}
@@ -179,31 +175,22 @@ export default AddCardScreen;
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: Color.white,
     flex: 1,
+    backgroundColor: Color.white,
   },
   mainContainer: {
     paddingBottom: 50,
-  },
-  topBoxContainer: {
-    backgroundColor: Color.white,
-    borderRadius: 25,
-    shadow: Color.primary,
-    elevation: 4,
-    paddingVertical: 20,
     paddingHorizontal: 20,
-    marginHorizontal: 25,
-    marginTop: 35,
   },
   fieldContainer: {
     gap: 15,
     marginVertical: 10,
   },
   textReason: {
-    fontSize: 16,
+    fontSize: wp("5%"),
     fontFamily: FontFamily.gilroyRegular,
-    },
-  
+  },
+
   //   Button
   buttonContainer: {
     justifyContent: "center",
@@ -212,14 +199,13 @@ const styles = StyleSheet.create({
     marginVertical: 10,
     backgroundColor: Color.primary,
     borderRadius: 10,
-    width: 300,
+    width: wp("80%"),
   },
   buttonText: {
-    letterSpacing: 0.2,
-    lineHeight: 26,
+    letterSpacing: 1,
     fontFamily: FontFamily.gilroyBold,
     textAlign: "center",
-    fontSize: 18,
+    fontSize: hp("2.2%"),
     color: Color.white,
   },
 });

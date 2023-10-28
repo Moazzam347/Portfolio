@@ -5,6 +5,7 @@ import {
   Image,
   Text,
   Pressable,
+  ScrollView
 } from "react-native";
 import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
@@ -15,6 +16,10 @@ import InputFieldPassword from "../components/InputFieldPassword";
 import Checkbox from "expo-checkbox";
 import ButtonMain from "../components/ButtonMain";
 import { StatusBar } from "expo-status-bar";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from "react-native-responsive-screen";
 
 const LoginScreen = () => {
   const navigation = useNavigation();
@@ -32,45 +37,50 @@ const LoginScreen = () => {
   };
 
   const formStyles = {
-    height: height * 0.7,
-    width: width * 0.9,
+    width: wp("90%"),
+    height: wp("150%"),
   };
   return (
     <View style={styles.mainContainer}>
       <StatusBar style="auto" />
       <TopNavigation title={"Log in"} />
       {/* Login Form */}
-      <View style={[styles.formContainer]}>
+      <ScrollView
+        contentContainerStyle={[styles.formContainer]}
+        showsVerticalScrollIndicator={false}
+      >
         <View style={[styles.formBox, formStyles]}>
-          {/* Image or logo */}
-          <View style={styles.imageContainer}>
-            <Image
-              style={styles.logo}
-              source={require("../assets/LogoWithName.png")}
-            />
-          </View>
+          <View>
+            {/* Image or logo */}
+            <View style={styles.imageContainer}>
+              <Image
+                style={styles.logo}
+                source={require("../assets/LogoWithName.png")}
+              />
+            </View>
 
-          {/* Input Fields */}
-          <View style={styles.inputContainer}>
-            {/* Phone Number */}
-            <InputFieldPhone getPhoneNumber={handlePhoneNumber} />
-            {/* Password */}
-            <InputFieldPassword getPassword={handlePassword} />
+            {/* Input Fields */}
+            <View style={styles.inputContainer}>
+              {/* Phone Number */}
+              <InputFieldPhone getPhoneNumber={handlePhoneNumber} />
+              {/* Password */}
+              <InputFieldPassword getPassword={handlePassword} />
 
-            {/* Remember and Forgot Password */}
-            <View style={styles.rememberForgotContainer}>
-              <View style={styles.rememberContainer}>
-                <Checkbox
-                  value={toggleCheckBox}
-                  onValueChange={setToggleCheckBox}
-                  color={toggleCheckBox ? Color.primary : undefined}
-                />
-                <Text>Remember</Text>
-              </View>
-              <View>
-                <Pressable onPress={() => navigation.navigate("Home")}>
-                  <Text style={styles.forgotText}>Forgot password?</Text>
-                </Pressable>
+              {/* Remember and Forgot Password */}
+              <View style={styles.rememberForgotContainer}>
+                <View style={styles.rememberContainer}>
+                  <Checkbox
+                    value={toggleCheckBox}
+                    onValueChange={setToggleCheckBox}
+                    color={toggleCheckBox ? Color.primary : undefined}
+                  />
+                  <Text>Remember</Text>
+                </View>
+                <View>
+                  <Pressable onPress={() => navigation.navigate("Home")}>
+                    <Text style={styles.forgotText}>Forgot password?</Text>
+                  </Pressable>
+                </View>
               </View>
             </View>
           </View>
@@ -81,7 +91,7 @@ const LoginScreen = () => {
               title="Login"
               buttonNavigation={() => navigation.navigate("Home")}
             />
-            <View style={[styles.rememberContainer, { marginTop: 30 }]}>
+            <View style={[styles.rememberContainer, { marginTop: 30, paddingBottom: 10 }]}>
               <Text>Don't have an account?</Text>
               <Pressable onPress={() => navigation.navigate("Register")}>
                 <Text style={styles.forgotText}>Register</Text>
@@ -89,7 +99,7 @@ const LoginScreen = () => {
             </View>
           </View>
         </View>
-      </View>
+      </ScrollView>
     </View>
   );
 };
@@ -99,24 +109,31 @@ export default LoginScreen;
 const styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
-    backgroundColor: Color.background,
+    backgroundColor: Color.white,
   },
   formContainer: {
-    flex: 1,
-    justifyContent: "flex-start",
+    // flex: 1,
     alignItems: "center",
-    marginTop: 50,
+    paddingBottom: 50,
+    backgroundColor: Color.white,
   },
   formBox: {
     backgroundColor: Color.white,
     borderRadius: 20,
-    paddingHorizontal: 20,
-    justifyContent: "center",
+    justifyContent: "space-between",
     shadowColor: Color.primary,
-    elevation: 10,
+    elevation: 5,
+    paddingHorizontal: 20,
+    paddingVertical: 30,
+    marginTop: 20,
   },
   imageContainer: {
     alignItems: "center",
+  },
+  logo: {
+    width: wp("60%"),
+    height: wp("20%"),
+    resizeMode: "contain",
   },
   inputContainer: {
     marginTop: 30,
@@ -125,7 +142,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    paddingLeft: 20,
+    paddingLeft: 10,
     marginTop: 10,
   },
   rememberContainer: {

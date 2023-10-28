@@ -138,18 +138,19 @@ const ServicesScreen = () => {
 export default ServicesScreen;
 
 const styles = StyleSheet.create({
-  container: { paddingBottom: 40, backgroundColor: Color.white },
-  mainScrollView: {},
+  container: {
+    flex: 1,
+    backgroundColor: Color.white,
+  },
+  mainScrollView: {
+    paddingBottom: 20,
+  },
   allServicesContainer: {
     flexDirection: "row",
     justifyContent: "flex-start",
     alignItems: "center",
-    paddingVertical: 10,
-    paddingHorizontal: 10,
-    paddingRight: 30,
     flexWrap: "wrap",
     paddingHorizontal: 20,
-    paddingBottom: 100,
   },
   mostUsedServiceContainer: {
     paddingHorizontal: 20,

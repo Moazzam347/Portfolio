@@ -4,6 +4,10 @@ import { Color, FontFamily } from "../GlobalStyles";
 import ButtonMain from "../components/ButtonMain";
 import { useNavigation } from "@react-navigation/native";
 import { StatusBar } from "expo-status-bar";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from "react-native-responsive-screen";
 
 const OnboardingScreen1 = () => {
   const navigation = useNavigation();
@@ -12,7 +16,10 @@ const OnboardingScreen1 = () => {
       <StatusBar style="auto" />
       <View style={styles.upperContainer}>
         <View>
-          <Image source={require("../assets/onboarding1.png")} />
+          <Image
+            style={styles.imageStyle}
+            source={require("../assets/onboarding1.png")}
+          />
         </View>
         <View>
           <Text style={styles.buttonTextHeading}>Add & Manage Cards</Text>
@@ -52,16 +59,21 @@ const styles = StyleSheet.create({
     justifyContent: "space-evenly",
     alignItems: "center",
   },
+  imageStyle: {
+    width: wp("50%"),
+    height: hp("50%"),
+    resizeMode: "contain",
+  },
   buttonTextHeading: {
     fontFamily: FontFamily.gilroyBold,
-    fontSize: 28,
+    fontSize: hp("4%"),
     textAlign: "center",
     color: Color.dark,
     marginBottom: 20,
   },
   buttonText: {
     fontFamily: FontFamily.gilroyRegular,
-    fontSize: 18,
+    fontSize: hp("2.2%"),
     textAlign: "center",
     color: Color.textGrey,
   },

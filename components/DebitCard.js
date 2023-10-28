@@ -10,6 +10,10 @@ import React from "react";
 import { Color, FontFamily } from "../GlobalStyles";
 import { LinearGradient } from "expo-linear-gradient";
 import { useNavigation } from "@react-navigation/native";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from "react-native-responsive-screen";
 
 const width = Dimensions.get("screen").width;
 const DebitCard = (props) => {
@@ -71,11 +75,11 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     paddingHorizontal: 20,
     margin: 10,
-    width: width * 0.9,
-    height: width / 1.8,
+    width: wp("90%"),
+    height: wp("55%"),
     justifyContent: "center",
     shadow: Color.primary,
-    elevation: 10,
+    elevation: 1,
   },
   upperContainer: {
     flexDirection: "row",
@@ -84,25 +88,23 @@ const styles = StyleSheet.create({
     paddingTop: 20,
   },
   upperTextName: {
-    fontSize: 20,
+    fontSize: wp("5%"),
     color: Color.white,
     letterSpacing: 1,
     fontFamily: FontFamily.gilroyRegular,
   },
   cardLogo: {
-    width: 70,
-    height: 70,
+    width: wp("15%"),
+    height: wp("15%"),
     resizeMode: "contain",
   },
   middleContainer: {
     flexDirection: "row",
     justifyContent: "flex-start",
-    gap: 10,
-    alignItems: "center",
     paddingTop: 20,
   },
   cardNumber: {
-    fontSize: 20,
+    fontSize: wp("5.5%"),
     fontWeight: "bold",
     color: Color.white,
     letterSpacing: 2.5,
@@ -114,16 +116,17 @@ const styles = StyleSheet.create({
     paddingVertical: 30,
   },
   cardDetail: {
-    gap: 10,
+    gap: wp("1.5%"),
+    paddingBottom: 5,
   },
   lowerTextHeading: {
-    fontSize: 16,
+    fontSize: wp("4%"),
     color: Color.white,
     letterSpacing: 1,
     fontFamily: FontFamily.gilroyRegular,
   },
   lowerText: {
-    fontSize: 16,
+    fontSize: wp("4%"),
     color: Color.white,
     letterSpacing: 1,
     fontFamily: FontFamily.gilroyBold,

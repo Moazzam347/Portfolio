@@ -16,6 +16,7 @@
     "react-native-onboarding-swiper": "^1.2.0",
     "react-native-otp-ultimate": "^1.0.22",
     "react-native-reanimated": "~3.3.0",
+    "react-native-responsive-screen": "^1.4.2",
     "react-native-safe-area-context": "4.6.3",
     "react-native-screens": "~3.22.0",
     "react-native-web": "~0.19.6"

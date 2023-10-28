@@ -3,6 +3,10 @@ import React, { useState } from "react";
 import { MaterialIcons } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
 import { Color, FontFamily } from "../GlobalStyles";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from "react-native-responsive-screen";
 
 const InputFieldPassword = (props) => {
   const {
@@ -52,15 +56,11 @@ const InputFieldPassword = (props) => {
 export default InputFieldPassword;
 
 const styles = StyleSheet.create({
-  inputContainer: {
-    marginTop: 20,
-  },
   inputfieldContainer: {
     flexDirection: "row",
     justifyContent: "space-around",
     alignItems: "center",
     backgroundColor: Color.background,
-    gap: 15,
     padding: 15,
     borderRadius: 8,
     marginBottom: 20,
@@ -73,8 +73,8 @@ const styles = StyleSheet.create({
     gap: 15,
   },
   textInput: {
-    fontSize: 16,
+    fontSize: hp("2.2%"),
     fontFamily: FontFamily.gilroyRegular,
-    width: 200,
+    width: wp("50%"),
   },
 });

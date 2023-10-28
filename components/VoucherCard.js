@@ -2,6 +2,10 @@ import { StyleSheet, Text, View, Image, Pressable } from "react-native";
 import React from "react";
 import { Color, FontFamily } from "../GlobalStyles";
 import { useNavigation } from "@react-navigation/native";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from "react-native-responsive-screen";
 
 const VoucherCard = (props) => {
   const navigation = useNavigation();
@@ -47,16 +51,16 @@ const styles = StyleSheet.create({
     gap: 10,
     backgroundColor: Color.white,
     shadow: Color.primary,
-    elevation: 5,
+    elevation: 3,
     paddingVertical: 20,
-    minWidth: 160,
     borderRadius: 25,
     marginHorizontal: 5,
     marginVertical: 10,
+    width: wp("43%"),
   },
   imageStyle: {
-    width: 60,
-    height: 60,
+    width: wp("15%"),
+    height: wp("15%"),
     resizeMode: "contain",
   },
   detailContainer: {
@@ -64,26 +68,27 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   discountText: {
-    fontSize: 18,
+    fontSize: wp("4.5%"),
     fontFamily: FontFamily.gilroyBold,
     fontWeight: "600",
     color: Color.dark,
   },
   nameAndDateContainer: {
-    flexDirection: "row",
+    // flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
     gap: 5,
     paddingTop: 10,
+    flexWrap: "wrap",
   },
   nameText: {
-    fontSize: 15,
+    fontSize: wp("4.5%"),
     fontFamily: FontFamily.gilroyRegular,
     fontWeight: "600",
     color: Color.primary,
   },
   dateText: {
-    fontSize: 14,
+    fontSize: wp("3.5%"),
     fontFamily: FontFamily.gilroyRegular,
     fontWeight: "600",
     color: Color.dark,
